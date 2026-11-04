@@ -1,5 +1,5 @@
 import { useEffect, useId } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import {
   SafeAreaProvider,
   useSafeAreaFrame,
@@ -27,10 +27,18 @@ export const ToastHost = () => {
   const name = `teletoast-host-${RUNTIME_KEY}${useId()}`;
 
   return (
-    <SafeAreaProvider style={StyleSheet.absoluteFill} pointerEvents="box-none">
+    <>
+      {/* Measures only. On Android, SafeAreaProvider's view manager drops
+          `pointerEvents`, so a full-screen provider would swallow every
+          touch of the screen below: a `none` parent takes it out of touch
+          handling on every platform. */}
+      <View style={StyleSheet.absoluteFill} pointerEvents="none">
+        <SafeAreaProvider style={StyleSheet.absoluteFill}>
+          <HostRegistration name={name} />
+        </SafeAreaProvider>
+      </View>
       <PortalHost name={name} style={StyleSheet.absoluteFill} />
-      <HostRegistration name={name} />
-    </SafeAreaProvider>
+    </>
   );
 };
 

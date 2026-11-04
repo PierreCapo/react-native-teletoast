@@ -28,7 +28,7 @@ Headless toasts for React Native, rendered through
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iOS      | ✅ Tested on the iOS 27 simulator: stacking, swipe, buttons inside toasts, toasts carried into React Native `Modal` sheets and Expo Router modals.        |
 | Web      | ✅ Tested with react-native-web 0.21 and Expo static rendering: rendering, clicks through the toast layer, dismissal.                                    |
-| Android  | 🚧 The example app builds for Android 15 (API 35), but hasn't been run on a device or emulator yet. Nothing in the code is iOS-only; it just hasn't been seen running. |
+| Android  | ✅ Tested on the Android 15 (API 35) emulator: stacking, swipe, buttons inside toasts, toasts carried into a React Native `Modal` and back.           |
 
 Tested with Expo SDK 58, React Native 0.88, React 19.3, Reanimated 4.7,
 Gesture Handler 3.3 and react-native-teleport 1.2.2.
@@ -228,7 +228,7 @@ To try a local build in an app, depend on the tarball, not the folder: a
 `file:` folder brings this repo's `node_modules`, so a second React.
 
 ```sh
-bun add react-native-teletoast@file:../react-native-teletoast/react-native-teletoast-0.1.2.tgz
+bun add react-native-teletoast@file:../react-native-teletoast/react-native-teletoast-0.1.3.tgz
 ```
 
 bun caches a local tarball by its path, so repacking the same version changes
