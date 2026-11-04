@@ -1,0 +1,96 @@
+{
+  "name": "react-native-teletoast",
+  "version": "0.1.2",
+  "description": "Headless toasts for React Native, teleported with react-native-teleport. Bring your own toast component: no icons, no SVG.",
+  "source": "./src/index.ts",
+  "main": "./lib/module/index.js",
+  "types": "./lib/typescript/src/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib",
+    "!**/__tests__",
+    "!**/.*"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "bob build",
+    "clean": "rm -rf lib",
+    "pack:local": "bun pm pack",
+    "prepare": "bob build",
+    "test": "bun test",
+    "typecheck": "tsc"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "toast",
+    "toaster",
+    "sonner",
+    "headless",
+    "portal",
+    "teleport",
+    "reanimated",
+    "gesture-handler"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PierreCapo/react-native-teletoast.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PierreCapo/react-native-teletoast/issues"
+  },
+  "homepage": "https://github.com/PierreCapo/react-native-teletoast#readme",
+  "author": "Pierre Capo",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-gesture-handler": ">=3.0.0",
+    "react-native-reanimated": ">=4.0.0",
+    "react-native-safe-area-context": ">=4.0.0",
+    "react-native-teleport": ">=1.2.0",
+    "react-native-worklets": ">=0.5.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.4",
+    "@types/react": "~19.3.0",
+    "react": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-builder-bob": "^0.44.1",
+    "react-native-gesture-handler": "~3.3.0",
+    "react-native-reanimated": "4.7.1",
+    "react-native-safe-area-context": "~5.10.1",
+    "react-native-teleport": "1.2.2",
+    "react-native-worklets": "0.13.0",
+    "typescript": "~6.0.3"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  }
+}
