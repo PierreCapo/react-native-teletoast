@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "teletoast",
+    "slug": "teletoast-example",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "bundleIdentifier": "dev.pierrecapo.teletoast.example",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "dev.pierrecapo.teletoast.example"
+    }
+  }
+}

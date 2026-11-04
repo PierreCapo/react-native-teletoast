@@ -14,6 +14,29 @@ Headless toasts for React Native, rendered through
 - Runs on the UI thread: Reanimated 4 for motion, Gesture Handler 3 for the
   swipe. Respects Reduce Motion (fades, no travel).
 
+<p align="center">
+  <img src="docs/demo.gif" width="320" alt="Toasts stacking, one swiped away, then an upload toast moving into a native sheet, updating there, and coming back when the sheet closes" />
+</p>
+
+<p align="center">
+  <sub>The <a href="example">example app</a> on iOS. <a href="docs/demo.mp4">Sharper as MP4</a>.</sub>
+</p>
+
+## Compatibility
+
+| Platform | Status                                                                                                                                                   |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| iOS      | ✅ Tested on the iOS 27 simulator: stacking, swipe, buttons inside toasts, toasts carried into React Native `Modal` sheets and Expo Router modals.        |
+| Web      | ✅ Tested with react-native-web 0.21 and Expo static rendering: rendering, clicks through the toast layer, dismissal.                                    |
+| Android  | 🚧 The example app builds for Android 15 (API 35), but hasn't been run on a device or emulator yet. Nothing in the code is iOS-only; it just hasn't been seen running. |
+
+Tested with Expo SDK 58, React Native 0.88, React 19.3, Reanimated 4.7,
+Gesture Handler 3.3 and react-native-teleport 1.2.2.
+
+Reanimated 4 needs the New Architecture. Expo Go can't run it:
+react-native-teleport has native code, so use a development build
+(`expo run:ios`, `expo run:android`).
+
 ## Install
 
 ```sh
@@ -27,8 +50,6 @@ bun add react-native-teletoast react-native-teleport react-native-reanimated rea
 | `react-native-worklets`          | >= 0.5    |
 | `react-native-gesture-handler`   | >= 3.0    |
 | `react-native-safe-area-context` | >= 4.0    |
-
-Reanimated 4 needs the New Architecture.
 
 ## Setup
 
@@ -166,10 +187,25 @@ const withToastHost = ({ children, options }) =>
 
 The most recently mounted host wins.
 
+When a native modal closes, the toasts inside it leave with it, then show up
+at the top of the screen once it's gone: the modal applies view changes only
+after its closing animation.
+
 ## Web
 
 Works with react-native-web, server rendering included: the `Toaster`
 renders nothing until a toast exists.
+
+## Example app
+
+[`example/`](example) is an Expo app that runs the library straight from
+`src/`, with a native sheet to see toasts travel in and out.
+
+```sh
+cd example
+bun install
+bun run ios       # or: bun run android
+```
 
 ## Differences with sonner-native
 
@@ -182,7 +218,7 @@ renders nothing until a toast exists.
 ## Local development
 
 ```sh
-bun install       # also builds lib/
+bun install         # also builds lib/
 bun run typecheck
 bun test
 bun run pack:local  # builds and writes react-native-teletoast-<version>.tgz, what npm would publish
